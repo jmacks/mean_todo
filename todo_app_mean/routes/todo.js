@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const user = require('../controllers/users_controller');
 const list = require('../controllers/lists_controller');
-const todo = require('../controllers/todos_controller');
 const auth = require('../controllers/auth_controller');
 
 //the actual routes and their corresponding methods
@@ -25,11 +24,6 @@ router.route('/list')
 router.route('/list/:id')
       .put(list.put)
       .delete(list.destroy);
-
-router.route('/todo')
-      .post(todo.create)
-      .get(todo.get)
-      .delete(user.destroy);
 
 router.route('/authenticate')
       .post(auth.post);
