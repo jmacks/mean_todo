@@ -1,10 +1,10 @@
 'use strict';
-//get the token up in the global scope
+
 let TOKEN;
 angular.module('Todo')
        .controller('UsersController', UsersController)
        .controller('ListsController', ListsController)
-       .controller('AuthController', AuthController)
+       .controller('AuthController', AuthController);
 ////////////USERS CONTROLLER////////////////
 UsersController.$inject = ['$http'];
 
@@ -16,7 +16,8 @@ function UsersController($http){
   self.getUser = getUser;
   self.deleteUser = deleteUser;
   self.newUser = {};
-  self.test = "usr cntrl cnctd!"
+  self.test = "usr cntrl cnctd!";
+
   getUser();
 
 //giving her some functions to play with
@@ -63,7 +64,8 @@ function ListsController($http){
   self.getList = getList;
   self.deleteList = deleteList;
   self.newList = [];
-  self.test = "LISTS CoNeKtIOJN"
+  self.test = "LISTS CoNeKtIOJN";
+
   getList();
 
   //frontend functions for lists
@@ -108,7 +110,7 @@ function AuthController($http){
   self.login = login;
   self.token = TOKEN;
 
-  self.test = "";
+  self.welcome = "";
 
   function login(user){
     $http
@@ -118,15 +120,12 @@ function AuthController($http){
         self.token = data.token;//doesnt work
         console.log(data.token);
 //testing connection between the dom and controller in login auth scope
-        self.test = "Hi!" + TOKEN;
+        self.welcome = "WELCOME " + user.name;
 
         alert("Welcome " + user.name + " get to it");
        }
     });
 
   }
-
-
-
 
 }

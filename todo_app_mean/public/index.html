@@ -6,19 +6,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.3/material.min.js"></script>
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.3s/material.indigo-amber.min.css" />
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-amber.min.css" />
     <link rel="stylesheet" type="text/css" href="/style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+
     <script src="/scripts/angular/angular.js"></script>
     <script src="/app.js"></script>
     <script src="/todoController.js"></script>
 
+
     <title>what TODO today</title>
   </head>
   <body>
+    <!-- nav drawer with lists -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
   <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
+    <span class="mdl-layout-title">ToDo Lists</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="">Link</a>
       <a class="mdl-navigation__link" href="">Link</a>
@@ -27,13 +31,20 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="page-content">
-      <nav id="navbar">
-        <button id="test-btn" class="">Click Me</button>
-      </nav>
+    <div class="page-content" ng-app="Todo">
+
+      <div class="title" ng-controller="UsersController as users">
+      <h1>ToDo Lists</h1>
+      <h3 id="welcome">{{users.test}}</h3>
     </div>
+      <section ng-controller="UsersController as users">
+
+      </section>
+    </div>
+
   </main>
 </div>
+
 
 
 
