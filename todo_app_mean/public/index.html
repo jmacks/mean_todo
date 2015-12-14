@@ -80,7 +80,17 @@
       </section>
 
       <section ng-controller="ListsController as lists">
-        {{lists.test}}
+        <form class="add-form" ng-hide="auth.token == undefined" ng-submit="lists.addList()">
+          <h3>Add a ToDo List</h3>
+
+          <div>
+            <label for="list-title">Title:</label>
+            <input type="text" id="list-title" placeholder="Title" ng-model="lists.newList.title"
+          </div>
+          <div>
+            <input type="submit" id="add-list" value="Add List">
+          </div>
+        </form>
       </section>
 
 

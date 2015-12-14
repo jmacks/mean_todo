@@ -64,7 +64,7 @@ function ListsController($http){
   self.addList = addList;
   self.getList = getList;
   self.deleteList = deleteList;
-  self.newList = [];
+  self.newList = {};
   self.test = "LISTS CoNeKtIOJN";
 
   getList();
@@ -123,7 +123,7 @@ function AuthController($http){
 //testing connection between the dom and controller in login auth scope
         self.welcome = "welcome " + user.name;
 
-        
+
        }
     });
 

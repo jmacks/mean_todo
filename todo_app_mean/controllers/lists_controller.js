@@ -5,7 +5,7 @@ let List = require('../models/list');
 let create = function(req, res){
   let newList = new List(req.body);
 
-  newList.save((err, user) => {
+  newList.save((err, list) => {
     if(err){
       return res.status(401).send(err);
     } else {
