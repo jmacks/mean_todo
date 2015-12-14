@@ -4,16 +4,14 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-amber.min.css" />
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-amber.min.css" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="/scripts/angular/angular.js"></script>
     <script src="/app.js"></script>
     <script src="/todoController.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 
 
     <title>what TODO today</title>
@@ -31,23 +29,68 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <div class="page-content" ng-app="Todo">
-
-      <div class="title" ng-controller="UsersController as users">
+    <div class="page-content">
       <h1>ToDo Lists</h1>
-      <h3 id="welcome">{{users.test}}</h3>
-    </div>
+      <div class="page" ng-controller="AuthController as auth">
+        <p id="welcome-msg">{{auth.welcome}}</p>
       <section ng-controller="UsersController as users">
+        <div ng-model="test">
 
+      </div>
+      <div id="user-display">
+        Show/Hide Test Users: <input type="checkbox" ng-model="checked" aria-label="Toggle ngHide"><br>
+        <ul id="users" ng-show="checked">
+          <h4>test users</h4>
+          <li id="user-list" ng-repeat="user in users.all">
+            <h4>Name: {{user.name}}<button ng-click="users.deleteUser(user)">X</button></h4>
+          </li>
+        </ul>
+      </div>
+        <form class="add-user" ng-show="auth.token == undefined" ng-submit="users.addUser()">
+      <!-- doesnt work yet need to find angular tag that can show/hide divs based on token presence -->
+      <h3>Sign Up Here!</h3>
+      <div>
+        <label for="new-user-name">User's Name:</label>
+        <input type="text" id="new-user-name" placeholder="Name Goes Here" ng-model="users.newUser.name">
+      </div>
+      <div>
+        <label for="new-user-password">User's Password:</label>
+        <input type="text" id="new-user-password" placeholder="Make It Good" ng-model="users.newUser.password">
+      </div>
+      <div>
+        <input type="submit" id="signup" value="SignUp">
+      </div>
+    </form>
       </section>
+      <section ng-show="auth.token == undefined">
+        <form class="login">
+          <h3>Login</h3>
+          <div>
+            <label for="username">Name:</label>
+            <input type="text" id="username" placeholder="ENTER NAME HERE" ng-model="user.name">
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="text" id="password" placeholder="ENTER PASSWORD" ng-model="user.password">
+          </div>
+          <div>
+            <input type="submit" ng-click="auth.login(user)" id="login" value="Login">
+          </div>
+        </form>
+      </section>
+
+      <section ng-controller="ListsController as lists">
+        {{lists.test}}
+      </section>
+
+
+
+    </div> <!-- auth div -->
+
     </div>
 
   </main>
 </div>
-
-
-
-
 
   </body>
 </html>

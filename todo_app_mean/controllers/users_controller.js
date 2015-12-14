@@ -4,7 +4,6 @@ let User = require('../models/user');
 
 let create = function(req, res){
   let newUser = new User(req.body);
-
   newUser.save((err, user) => {
     if(err){
       return res.status(401).send(err);

@@ -1,10 +1,10 @@
 'use strict';
 
 let TOKEN;
-angular.module('Todo')
+angular.module('Todo', [])
        .controller('UsersController', UsersController)
        .controller('ListsController', ListsController)
-       .controller('AuthController', AuthController);
+       .controller('AuthController', AuthController)
 ////////////USERS CONTROLLER////////////////
 UsersController.$inject = ['$http'];
 
@@ -30,6 +30,7 @@ function UsersController($http){
   }
 
   function addUser(){
+    console.log(self.newUser);
     $http
       .post('http://localhost:3000/user', self.newUser)
       .then(function(res){
@@ -59,7 +60,7 @@ function ListsController($http){
 
   //setting up lists controller object
   let self = this;
-  self.all = {[]};
+  self.all = [];
   self.addList = addList;
   self.getList = getList;
   self.deleteList = deleteList;
@@ -120,9 +121,9 @@ function AuthController($http){
         self.token = data.token;//doesnt work
         console.log(data.token);
 //testing connection between the dom and controller in login auth scope
-        self.welcome = "WELCOME " + user.name;
+        self.welcome = "welcome " + user.name;
 
-        alert("Welcome " + user.name + " get to it");
+        
        }
     });
 
