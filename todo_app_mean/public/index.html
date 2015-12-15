@@ -23,7 +23,7 @@
     <span class="mdl-layout-title">ToDo Lists</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" id="list-list" ng-model="collapsed" ng-click="lists.getOneList(list); collapsed=!collapsed" ng-repeat="list in lists.all">
-        {{list.title}} <button ng-click="lists.deleteList(list)">X</button>
+        <h5> {{list.title}} &nbsp;&nbsp;&nbsp;&nbsp; <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--accent" ng-click="lists.deleteList(list)">X</button></h5>
       </a>
 
     </nav>
@@ -92,20 +92,19 @@
           </div>
         </form>
         <div id="todo-list" ng-hide="collapsed">
-        {{lists.list.title}}<br>
+        <h3>{{lists.list.title}}</h3>
         <ul >
           <li id="list-of-todos" ng-repeat="todo in lists.list.todos">
-            {{todo}}
+            <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input">&nbsp;{{todo}}
           </li>
         </ul>
         <form class="edit-list" ng-hide="auth.token == undefined" ng-submit="lists.addTodo()">
-          <h5>Add a ToDo</h5>
-            <div>
-              <label for="new-todo">New Todo:</label>
-              <input type="text" name="todo" id="new-todo" placeholder="what to do today?" ng-model="lists.newTodo">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <label for="new-todo" class="mdl-textfield__label">add todo</label>
+              <input type="text" name="todo" id="new-todo" class="mdl-textfield__input" ng-model="lists.newTodo">
             </div>
             <div>
-              <input type="submit" id="add-todo" value="Add">
+              <input type="submit" id="add-todo" value="+" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
             </div>
         </form>
       </div> <!-- todo list div-->
