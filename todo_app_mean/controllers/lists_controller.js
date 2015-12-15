@@ -31,28 +31,22 @@ let getOne = function(req,res){
 
 //update lists
 let put = function(req, res){
-  // let listParams = req.params;
-  // console.log(listParams);
-  // console.log('###### req.params.id ####');
-  // console.log(req.params.id);
-  // console.log('###### req.body ####');
-  // console.log(req.body.todo);
-  // res.send('success');
 
-  // List.findOne({ _title: listParams.title }, function(err, list){
   List.findOne({ _id: req.params.id }, function(err, list){
     // list.todos.push(req.body.todo);
     // list.update
     var newObject = { };
+    newObject._id = list._id;
     newObject.title = list.title;
     newObject.todos = list.todos;
     newObject.todos.push(req.body.todo);
     console.log('#### newObject ####');
     console.log(newObject);
 
-    list.update(newObject, function(err, list) {
-      console.log(list);
-      res.json(list);
+    list.update(newObject, function(err, newlist) {
+      console.log(newlist);
+      // res.json(newlist);
+      res.json(newObject);
     })
     // list.update({
     //   title: list.title,

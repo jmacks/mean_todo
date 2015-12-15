@@ -107,7 +107,9 @@ function ListsController($http){
 
       .then(function(res){
         // self.toDoArr.push(res.data.list.todos);
-        // self.getOneList();
+        console.log(res.data);
+        console.log(res);
+        self.getOneList(res.data);
         console.log('update self.list');
 
       })
@@ -117,8 +119,14 @@ function ListsController($http){
     $http
       .post('http://localhost:3000/list', self.newList)
       .then(function(res){
-        getList();
+        // getList();
+        console.log(res.data);
+        self.getOneList(res.data);
+        self.getList();
       });
+      // self.list = self.newList;
+      // self.list.todos = [];
+      // self.getOneList(list);
       self.newList = {};
   }
 
