@@ -61,11 +61,16 @@ function ListsController($http){
   //setting up lists controller object
   let self = this;
   self.all = [];
+  self.list = {};
   self.addList = addList;
   self.getList = getList;
   self.deleteList = deleteList;
   self.newList = {};
+  self.getOneList = getOneList;
+  self.newTodo = "";
+  self.addTodo = addTodo;
   self.test = "LISTS CoNeKtIOJN";
+  self.toDoArr = [];
 
   getList();
 
@@ -76,6 +81,36 @@ function ListsController($http){
       .then(function(res){
         self.all = res.data.lists;
       });
+  }
+
+  function getOneList(list){
+    console.log(list._id);
+    $http
+      .get('http://localhost:3000/list/' + list._id)
+      .then(function(res){
+        console.log(res.data);
+        self.list = res.data;
+        self.list.todos = res.data.todos;
+        // console.log(self.list.todos);
+        // console.log(self.list._id);
+
+
+      });
+  }
+
+  function addTodo(list){
+    console.log('self.list._id = ' + self.list._id);
+    console.log('self.newTodo = ' + self.newTodo);
+    $http
+      .put('http://localhost:3000/list/' + self.list._id, { "todo": self.newTodo })
+      // .put('http://localhost:3000/list/' + self.list._id)
+
+      .then(function(res){
+        // self.toDoArr.push(res.data.list.todos);
+        // self.getOneList();
+        console.log('update self.list');
+
+      })
   }
 
   function addList(){

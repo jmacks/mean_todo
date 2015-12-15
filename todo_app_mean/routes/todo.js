@@ -22,6 +22,7 @@ router.route('/list')
       .post(list.create);
 
 router.route('/list/:id')
+      .get(list.getOne)
       .put(list.put)
       .delete(list.destroy);
 

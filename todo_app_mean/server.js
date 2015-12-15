@@ -10,11 +10,11 @@ const expressJWT = require('express-jwt');
 const jwt = require('jsonwebtoken');
 
 const routes = require('./routes/todo.js');
-
-//stuff to use
-app.use('/', express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+//stuff to use
+app.use('/', express.static(__dirname + '/public'));
+
 app.use(logger('dev'));
 app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.use(routes);

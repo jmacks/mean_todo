@@ -16,16 +16,16 @@
 
     <title>what TODO today</title>
   </head>
-  <body>
+  <body ng-controller="ListsController as lists">
     <!-- nav drawer with lists -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">ToDo Lists</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" id="list-list" ng-model="collapsed" ng-click="lists.getOneList(list); collapsed=!collapsed" ng-repeat="list in lists.all">
+        {{list.title}} <button ng-click="lists.deleteList(list)">X</button>
+      </a>
+
     </nav>
   </div>
   <main class="mdl-layout__content">
@@ -79,7 +79,7 @@
         </form>
       </section>
 
-      <section ng-controller="ListsController as lists">
+
         <form class="add-form" ng-hide="auth.token == undefined" ng-submit="lists.addList()">
           <h3>Add a ToDo List</h3>
 
@@ -91,7 +91,20 @@
             <input type="submit" id="add-list" value="Add List">
           </div>
         </form>
-      </section>
+        <div id="todo-list" ng-hide="collapsed">
+        {{lists.list.title}}<br>
+        {{lists.list.todos}}
+        <form class="edit-list" ng-hide="auth.token == undefined" ng-submit="lists.addTodo()">
+          <h5>Add a ToDo</h5>
+            <div>
+              <label for="new-todo">New Todo:</label>
+              <input type="text" name="todo" id="new-todo" placeholder="what to do today?" ng-model="lists.newTodo"> 
+            </div>
+            <div>
+              <input type="submit" id="add-todo" value="Add">
+            </div>
+        </form>
+      </div> <!-- todo list div-->
 
 
 
