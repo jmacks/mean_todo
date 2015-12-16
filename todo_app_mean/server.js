@@ -19,7 +19,7 @@ app.use(logger('dev'));
 app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.use(routes);
 //connection to the mongo database
-mongoose.connect('mongodb://localhost/todo', function(err){
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/todo', function(err){
   if(err){
     console.log('ToDo DATABASE CONNECTION ERROR')
   } else {
@@ -28,6 +28,6 @@ mongoose.connect('mongodb://localhost/todo', function(err){
 });
 const db = mongoose.connection;
 //now listen to the server
-const server = app.listen(3000, function(){
+const server = app.listen(process.env.PORT || 3000, function(){
   console.log('ToDo RUNNING ON PORT 3000 :-x')
 });

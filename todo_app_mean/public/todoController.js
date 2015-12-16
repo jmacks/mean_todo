@@ -23,7 +23,7 @@ function UsersController($http){
 //giving her some functions to play with
   function getUser(){
     $http
-      .get('http://localhost:3000/user')
+      .get('/user')
       .then(function(res){
         self.all = res.data.users;
       });
@@ -32,7 +32,7 @@ function UsersController($http){
   function addUser(){
     console.log(self.newUser);
     $http
-      .post('http://localhost:3000/user', self.newUser)
+      .post('/user', self.newUser)
       .then(function(res){
         getUser();
       });
@@ -41,7 +41,7 @@ function UsersController($http){
 
   function deleteUser(user){
     $http
-      .delete('http://localhost:3000/user/' + user._id)
+      .delete('/user/' + user._id)
       .then(function(res){
         let index = self.all.indexOf(user);
         self.all.splice(index, 1);
@@ -77,7 +77,7 @@ function ListsController($http){
   //frontend functions for lists
   function getList(){
     $http
-      .get('http://localhost:3000/list')
+      .get('/list')
       .then(function(res){
         self.all = res.data.lists;
       });
@@ -86,7 +86,7 @@ function ListsController($http){
   function getOneList(list){
     console.log(list._id);
     $http
-      .get('http://localhost:3000/list/' + list._id)
+      .get('/list/' + list._id)
       .then(function(res){
         console.log(res.data);
         self.list = res.data;
@@ -102,7 +102,7 @@ function ListsController($http){
     console.log('self.list._id = ' + self.list._id);
     console.log('self.newTodo = ' + self.newTodo);
     $http
-      .put('http://localhost:3000/list/' + self.list._id, { "todo": self.newTodo })
+      .put('/list/' + self.list._id, { "todo": self.newTodo })
       // .put('http://localhost:3000/list/' + self.list._id)
 
       .then(function(res){
@@ -117,7 +117,7 @@ function ListsController($http){
 
   function addList(){
     $http
-      .post('http://localhost:3000/list', self.newList)
+      .post('/list', self.newList)
       .then(function(res){
         // getList();
         console.log(res.data);
@@ -132,7 +132,7 @@ function ListsController($http){
 
   function deleteList(list){
     $http
-      .delete('http://localhost:3000/list/' + list._id)
+      .delete('/list/' + list._id)
       .then(function(res){
         let index = self.all.indexOf(list);
         self.all.splice(index, 1);
@@ -158,7 +158,7 @@ function AuthController($http){
 
   function login(user){
     $http
-    .post("http://localhost:3000/authenticate", { name: user.name, password: user.password }).success(function(data, status){
+    .post("/authenticate", { name: user.name, password: user.password }).success(function(data, status){
        if(data.token){
         TOKEN = data.token;
         self.token = data.token;//doesnt work
